@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         restaurantIds: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.ARRAY(DataTypes.INTEGER),
         },
     },
     {
