@@ -37,28 +37,28 @@ import restaurantService from "../services/restaurantService";
  * - the first, _parent, is currently unused, but it contains the previously resolved field
  * - the second consists of arguments to the query / mutation (using destructured syntax in this case)
  */
-const restaurantResolvers = {
+const restaurantGroupResolvers = {
     Query: {
-      restaurant: async (_parent, { id }) => {
-        return await restaurantService.getRestaurant(id);
+      restaurantGroup: async (_parent, { id }) => {
+        return await restaurantGroupService.getRestaurantGroup(id);
       },
-      restaurants: async () => {
-        return await restaurantService.getRestaurants();
+      restaurantGroups: async () => {
+        return await restaurantGroupService.getRestaurantGroups();
       }
     },
     Mutation: {
-      createRestaurant: async (_parent, { name, address, type, budget, description, rating }) => {
+      createRestaurantGroup: async (_parent, { name, type, description }) => {
         validateRating(rating);
 
-        return await restaurantService.createRestaurant(name, address, type, budget, description, rating);
+        return await restaurantGroupService.createRestaurantGroup( name, type, description );
       },
-      updateRestaurant: async (_parent, { id, name, address, type, budget, description, rating }) => {
+      updateRestaurantGroup: async (_parent, { id, name, type, description }) => {
         validateRating(rating);
         
-        return await restaurantService.updateRestaurant(id, name, address, type, budget, description, rating);
+        return await restaurantGroupService.updateRestaurantGroup(id, name, type, description );
       },
-      deleteRestaurant: async (_parent, { id }) => {
-        return await restaurantService.deleteRestaurant(id);
+      deleteRestaurantGroup: async (_parent, { id }) => {
+        return await restaurantGroupService.deleteRestaurantGroup(id);
       }
     }
 };
